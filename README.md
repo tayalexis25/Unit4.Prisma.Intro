@@ -39,11 +39,14 @@ Ref: "Book"."authorId" > "Author"."id"
 ### Initialize the Database
 
 1. Fork and clone this repo. Work in your local repository!
+1. Create a new Postgres database `prisma_intro_db`
 1. Install the Prisma CLI.\
    `npm install prisma --save-dev`
-1. Initialize Prisma to use sqlite.\
-   `npx prisma init --datasource-provider sqlite`
-1. In the generated `.env` file, set `DATABASE_URL` to `"file:books.db"`.
+1. Initialize Prisma to use postgresql.\
+   `npx prisma init --datasource-provider postgresql`
+1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:@localhost:5432/prisma_intro_db"`  
+   (USER is the name of your database user, e.g. janedoe)
+
 1. Add models to your `schema.prisma` file according to the database schema above.
 1. Create and run the initial migration.\
    `npx prisma migrate dev --name init`
@@ -58,13 +61,13 @@ Ref: "Book"."authorId" > "Author"."id"
    `npm install @prisma/client`
 1. Create and export a new `PrismaClient` in `prisma/index.js`.
    ```js
-   const { PrismaClient } = require('@prisma/client');
+   const { PrismaClient } = require("@prisma/client");
    const prisma = new PrismaClient();
    module.exports = prisma;
    ```
 1. In `prisma/seed.js`, seed 20 authors into the database. Each author should have 3 corresponding books. Refer to [the docs on how to create related records](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#create-a-related-record).
    ```js
-   const prisma = require('../prisma');
+   const prisma = require("../prisma");
    const seed = async () => {
      // TODO: Create 20 authors with 3 books each
    };
