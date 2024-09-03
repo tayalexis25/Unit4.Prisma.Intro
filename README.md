@@ -44,9 +44,12 @@ Ref: "Book"."authorId" > "Author"."id"
    `npm install prisma --save-dev`
 1. Initialize Prisma to use postgresql.\
    `npx prisma init --datasource-provider postgresql`
-1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:@localhost:5432/prisma_intro_db"`
+1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:@localhost:5432/prisma_intro_db"`\
+   For Windows, use this connection:
+   `"postgresql://USER:PASSWORD:@localhost:5432/prisma_intro_db"`
 
    - USER is the name of your database user, e.g. janedoe
+   - PASSWORD is the password for your database user
 
 1. Add models to your `schema.prisma` file according to the database schema above.
 1. Create and run the initial migration.\
@@ -95,15 +98,29 @@ Ref: "Book"."authorId" > "Author"."id"
 ### Serve the Data with Express
 
 1. Install Express and create a server with two main routers: `/authors` and `/books`.
+
    - `npm install express morgan`
    - `npm install -D nodemon`
    - Add a script to your `package.json` file that starts your application:
+
    ```json
    "scripts": {
       "start:dev": "nodemon server.js"
    }
    ```
-1. Create the following `/authors` routes. These routes should use the [Prisma Client CRUD operations](https://www.prisma.io/docs/concepts/components/prisma-client/crud) to read and write from the database.
+
+   - Start by creating an api folder with `index.js`, `authors.js` and `books.js` files.
+   - In `index.js` create a router
+
+   ```js
+   const router = require("express").Router();
+   module.exports = router;
+
+   router.use("/authors", require("./authors"));
+   router.use("/books", require("./books"));
+   ```
+
+1. Create the following `/authors` routes in `authors.js`. These routes should use the [Prisma Client CRUD operations](https://www.prisma.io/docs/concepts/components/prisma-client/crud) to read and write from the database.
    - `GET /authors` - returns an array of all authors
    - `POST /authors` - creates a new author with the information provided in the request body
    - `GET /authors/:id` - returns a single author with the specified id
@@ -112,7 +129,7 @@ Ref: "Book"."authorId" > "Author"."id"
 1. Add the following `/authors` routes; these routes handle the relationship between authors and books.
    - `GET /authors/:id/books` - get all books written by the specified author
    - `POST /authors/:id/books` - creates a new book as provided in the request body with the specified author
-1. Create the following `/books` routes.
+1. Create the following `/books` routes in `books.js`.
    - `GET /books` - returns an array of all books
    - `GET /books/:id` - returns a single book with the specified id
    - `PUT /books/:id` - overwrites the book with the information provided in the request body
