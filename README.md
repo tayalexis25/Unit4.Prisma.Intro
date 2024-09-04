@@ -69,11 +69,11 @@ Ref: "Book"."authorId" > "Author"."id"
    const prisma = new PrismaClient();
    module.exports = prisma;
    ```
-1. In `prisma/seed.js`, seed 20 authors into the database. Each author should have 3 corresponding books. Refer to [the docs on how to create related records](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#create-a-related-record).
+1. In `prisma/seed.js`, seed 5 authors into the database. Each author should have 3 corresponding books. Refer to [the docs on how to create related records](https://www.prisma.io/docs/concepts/components/prisma-client/relation-queries#create-a-related-record).
    ```js
    const prisma = require("../prisma");
    const seed = async () => {
-     // TODO: Create 20 authors with 3 books each
+     // TODO: Create 5 authors with 3 books each
    };
    seed()
      .then(async () => await prisma.$disconnect())
