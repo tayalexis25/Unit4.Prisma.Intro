@@ -46,7 +46,7 @@ Ref: "Book"."authorId" > "Author"."id"
    `npx prisma init --datasource-provider postgresql`
 1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:@localhost:5432/prisma_intro_db"`\
    For Windows, use this connection:
-   `"postgresql://USER:PASSWORD:@localhost:5432/prisma_intro_db"`
+   `"postgresql://USER:PASSWORD@localhost:5432/prisma_intro_db"`
 
    - USER is the name of your database user, e.g. janedoe
    - PASSWORD is the password for your database user
