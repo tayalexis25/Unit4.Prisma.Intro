@@ -44,7 +44,7 @@ Ref: "Book"."authorId" > "Author"."id"
    `npm install prisma --save-dev`
 1. Initialize Prisma to use postgresql.\
    `npx prisma init --datasource-provider postgresql`
-1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:PASSWORD@localhost:5432/prisma_intro_db"`\
+1. In the generated `.env` file, set `DATABASE_URL` to `"postgresql://USER:PASSWORD@localhost:5432/prisma_intro_db"`
    - USER is the name of your database user, e.g. janedoe
    - PASSWORD is the password for your database user
 
