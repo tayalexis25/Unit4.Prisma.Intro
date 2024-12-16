@@ -106,7 +106,8 @@ Ref: "Book"."authorId" > "Author"."id"
    }
    ```
 
-   - Start by creating an api folder with `index.js`, `authors.js` and `books.js` files.
+   - Start by creating a `server.js` file for the express server and add middleware including `app.use("/api", require("./api"));`
+   - Create an api folder with `index.js`, `authors.js` and `books.js` files.
    - In `index.js` create a router
 
    ```js
